@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
+const mydataRouter = require('./routes/mydata'); // Create a router for the '/mydata' endpoint
 var usersRouter = require('./routes/users');
 
 var app = express();
@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+app.use('/mydata', mydataRouter); // Connect the '/mydata' endpoint to the mydataRouter
 app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
