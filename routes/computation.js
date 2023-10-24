@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
  else {
     thala = req.query.x;
  }
- var result = Math.cos(rm);
+ var result = Math.cos(thala);
   res.render('computation', { bonus: `Math.cos(${thala}) is ${result}` });
 });
 
