@@ -3,13 +3,13 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
  if(req.query.x==undefined) {
-    rm = Math.random();
+    thala = Math.random();
  } 
  else {
-    rm = req.query.x;
+    thala = req.query.x;
  }
  var result = Math.cos(rm);
-  res.render('computation', { fu: `Math.cos(${rm}) is ${result}` });
+  res.render('computation', { bonus: `Math.cos(${thala}) is ${result}` });
 });
 
 module.exports = router;
