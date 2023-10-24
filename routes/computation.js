@@ -1,28 +1,22 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const app = express();
+const port = 3000; // You can change this port number
 
-app.get('/', function (req, res, next) {
-  try {
-    let rm;
-    if (req.query.x === undefined) {
-      rm = Math.random();
-    } else {
-      rm = parseFloat(req.query.x);
-    }
+// Define the "computation" endpoint
+app.get('/computation', (req, res) => {
+  // Your computation logic here
+  const x = parseFloat(req.query.x); // Get the 'x' query parameter
 
-    if (isNaN(rm)) {
-      // Handle the case where 'x' is not a valid number
-      res.status(400).send('Invalid value for "x"');
-      return;
-    }
-
-    var result = Math.cos(rm);
-    res.render('computation', { func: `Math.cos(${rm}) is ${result}` });
-  } catch (error) {
-    // Handle any unexpected errors
-    next(error);
+  if (isNaN(x)) {
+    res.status(400).send('Invalid value for "x"');
+  } else {
+    // Perform the computation
+    const result = Math.cos(x);
+    res.json({ result: result }); // Respond with a JSON object
   }
 });
 
-module.exports = router;
-
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
